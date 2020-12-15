@@ -1,0 +1,33 @@
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.results {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#game-result {
+    border: 2px solid hotpink;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#deal-result {
+    border: 2px solid blue;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#prev-deal {
+    display: block;
+}
+#next-deal {
+    display: block;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Get Game Deals</title>
+    <meta charset="UTF-8"/> 
+    <meta name="description" content="Game Deals API (Du & Lin">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--CSS-->
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Other sources:
+    https://getbootstrap.com/docs/4.0/utilities/display/
+    -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="entry-box form-container card card-body bg-light">
+            <h2>Get games</h2>
+            <form id="game-form">
+                <div class="form-group">
+                    <label for="submission">Keyword*</label>
+                    <input type="text" class="form-control" id="submission" placeholder="Enter search" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Search for a game</button>
+            </form>
+        </div>
+
+        <div class="entry-box form-container card card-body bg-light">
+            <h2>Get Deals</h2>
+            <form id="deal-form">
+                <div class="form-group">
+                    <label for="title">Keyword*</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter search" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Search for a deal</button>
+            </form>
+        </div>
+
+
+
+        <div class="results">
+            <div class="" id="game-result">
+                <!-- <div class="row" id="row-test-row">
+                    <div class="col-9">
+                        <input type="checkbox" id="box1" name="box1" value="">
+                        <label for="" class="text-label">Test</label>
+                        <form class="text text-form" id="">
+                            <input type="text" class="text-input" id="test-submission">
+                        </form>
+                    </div>
+                    <div class="col-3" id="test-row">
+                        <button type="submit" class="btn btn-outline-secondary delete">Delete</button>
+                    </div>
+                </div> -->
+                <h4>GAMES</h4>
+                <div class="games"></div>
+
+            </div>
+        </div>
+        <div class="results">
+            <div class="" id="deal-result">
+                <h4>DEALS</h4>
+                <div class="page-label"></div>
+                <div class="deals"></div>
+
+                <button type="submit" id="prev-deal">Prev</button>
+                <button type="submit" id="next-deal">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
