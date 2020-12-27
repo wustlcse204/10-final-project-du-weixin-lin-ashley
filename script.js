@@ -10,11 +10,11 @@ function getGames() {
         if (this.readyState == 4 && this.status == 200) {
             var games = JSON.parse(this.responseText);   // gets array of games matching search
             console.log(games);   //TEST DELETE WHEN DONE
-            addGames(games); 
+            addGames(games);
             document.getElementById("submission").value = "";
-        } 
+        }
         else if (this.readyState == 4) {
-            console.log(this.responseText);   
+            console.log(this.responseText);
         }
     };
 
@@ -26,29 +26,29 @@ gameForm.addEventListener("submit", getGames, false);   //triggers submission & 
 
 function addGames(games) {
     event.preventDefault(); // Prevent page reload
-    
+
     document.getElementsByClassName("games", "empty")[0].remove();  //removes previous
     var results = document.getElementById("game-result");  // gets the containing form
 
-    var container = document.createElement("div");  
+    var container = document.createElement("div");
     container.classList.add("container", "games");
-        
+
     if (games.length == 0) {
-        var div = document.createElement("div"); 
+        var div = document.createElement("div");
         div.classList.add("empty");
         div.innerHTML = "Sorry, but it looks like there's no games matching this search. Try some other search terms."
         container.append(div);
     }
     else {
         for (var i = 0; i < games.length; i++) {
-            var div = document.createElement("div"); 
-            // var id = "div" + i; 
+            var div = document.createElement("div");
+            // var id = "div" + i;
             // div.id = id;
             div.innerHTML = "Game: " + games[i].external;
-            container.append(div);  
+            container.append(div);
         }
-    } 
-    results.append(container);  
+    }
+    results.append(container);
 }
 
 
@@ -56,7 +56,7 @@ function addGames(games) {
 var currentPage;
 function showDeals() {
     currentPage = 0;
-    getDeals(currentPage); 
+    getDeals(currentPage);
 }
 const dealForm = document.getElementById("deal-form");
 dealForm.addEventListener("submit", showDeals, false);   //triggers submission & making of ToDo via event listener
@@ -66,7 +66,7 @@ function prevDeal() {
     alert("Previous"); //TEST DELETE WHEN DONE
     currentPage -= 1;
     getDeals(currentPage);
-    
+
 }
 function nextDeal() {
     event.preventDefault(); // Prevent page reload
@@ -81,7 +81,7 @@ function getDeals(pageNo) {
     event.preventDefault(); // Prevent page reload
     document.getElementsByClassName("page-label")[0].remove();  //removes previous //TEST DELETE WHEN DONE
     document.getElementsByClassName("deals","empty")[0].remove();  //removes previous
-    
+
     var title =  "title=" + document.getElementById("title").value;
     var url = "https://www.cheapshark.com/api/1.0/deals?" + title;
     url = url + "&sortBy=Store";  //TEST DELETE WHEN DONE
@@ -94,13 +94,13 @@ function getDeals(pageNo) {
         if (this.readyState == 4 && this.status == 200) {
             var deals = JSON.parse(this.responseText);   // gets array of games matching search
             console.log(deals);
-            addDeals(deals); 
-        } 
+            addDeals(deals);
+        }
         else if (this.readyState == 4) {
-            console.log(this.responseText);   
+            console.log(this.responseText);
         }
     };
-    
+
     xhttp.open("GET", pageUrl, true);
     xhttp.send();
 
@@ -116,25 +116,24 @@ function addDeals(deals) {
 
     var results = document.getElementById("deal-result");  // gets the containing form
 
-    var container = document.createElement("div");  
+    var container = document.createElement("div");
     container.classList.add("container", "deals");
-    
+
     if (deals.length == 0) {
-        var div = document.createElement("div"); 
+        var div = document.createElement("div");
         div.classList.add("empty");
         div.innerHTML = "Sorry, but it looks like there's no deals matching this search. Try some other search terms."
         container.append(div);
     }
     else {
         for (var i = 0; i < deals.length; i++) {
-            var div = document.createElement("div"); 
-            // var id = "div" + i; 
+            var div = document.createElement("div");
+            // var id = "div" + i;
             // div.id = id;
             div.innerHTML = "Deal: " + deals[i].salePrice + " for " + deals[i].title;
             div.innerHTML = div.innerHTML + " with store ID of " + deals[i].storeID//TEST DELETE WHEN DONE
-            container.append(div);  
+            container.append(div);
         }
-    } 
-    results.append(container);  
+    }
+    results.append(container);
 }
-
