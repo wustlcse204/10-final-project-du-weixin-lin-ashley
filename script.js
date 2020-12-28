@@ -58,7 +58,9 @@ function showDeals() {
     currentPage = 0;
     getDeals(currentPage);
 }
-const dealForm = document.getElementById("deal-form");
+
+// currently bound to the homepage search, TODO: MAKE ONE FOR EACH FORM, UNIQUE IDS FOR EACH
+const dealForm = document.getElementById("homepage-search");
 dealForm.addEventListener("submit", showDeals, false);   //triggers submission & making of ToDo via event listener
 
 function prevDeal() {
@@ -82,9 +84,17 @@ function getDeals(pageNo) {
     document.getElementsByClassName("page-label")[0].remove();  //removes previous //TEST DELETE WHEN DONE
     document.getElementsByClassName("deals","empty")[0].remove();  //removes previous
 
-    var title =  "title=" + document.getElementById("title").value;
+    var title =  "title=" + document.getElementById("homepage-title").value;
     var url = "https://www.cheapshark.com/api/1.0/deals?" + title;
-    url = url + "&sortBy=Store";  //TEST DELETE WHEN DONE
+
+    // set of if statements that tack on filters to the sent url if they are applied
+    if (document.getElementById("homepage-low").value != "") {
+        url += "&lowerPrice=" + document.getElementById("homepage-low").value;
+    }
+    if (document.getElementById("homepage-high").value != "") {
+        url += "&upperPrice=" + document.getElementById("homepage-high").value;
+    }
+    //url = url + "&sortBy=Store";  //TEST DELETE WHEN DONE
 
     var pageUrl = url + "&pageNumber=" + pageNo;
 
@@ -131,7 +141,6 @@ function addDeals(deals) {
             // var id = "div" + i;
             // div.id = id;
             div.innerHTML = "Deal: " + deals[i].salePrice + " for " + deals[i].title;
-            div.innerHTML = div.innerHTML + " with store ID of " + deals[i].storeID//TEST DELETE WHEN DONE
             container.append(div);
         }
     }
