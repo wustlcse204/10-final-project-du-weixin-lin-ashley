@@ -9,7 +9,8 @@ function getStores(idToStoreName) {
             var stores = JSON.parse(this.responseText);   // gets array of games matching search
             stores.forEach(function(store) {
                 if (store.isActive == 1) {
-                    idToStoreName.set(store.storeID, store.storeName); 
+                    // maps store id to it's name and a set of images
+                    idToStoreName.set(store.storeID, {name: store.storeName, images: store.images}); 
                 }
             });
         }

@@ -195,10 +195,10 @@
 }
 
 #prev-deal {
-    display: block;
+  display: none;
 }
 #next-deal {
-    display: block;
+  display: none;
 }
 
 /* css for tables? */
