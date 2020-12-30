@@ -23,8 +23,8 @@ function makeDealsList() {
     // reset form value
     document.getElementById("homepage-title").value = "";
 
-    
-    
+
+
 }
 
 // get all available pages of deals by pushing sucessive pages until the next page is empty
@@ -33,7 +33,7 @@ function getResults(deals, keyword) {
     if (deals.length != 0) {
         //pushes deals to the master list
         deals.forEach(function(deal) {
-            listOfDeals.push(deal);  
+            listOfDeals.push(deal);
         })
         pageVar += 1;
         getDeals(pageVar, keyword);
@@ -48,7 +48,7 @@ function getResults(deals, keyword) {
         pageOne();
     }
 }
-// gets one page of deals from CheapShark (each page has 60 deals) 
+// gets one page of deals from CheapShark (each page has 60 deals)
 function getDeals(page, keyword) {
     event.preventDefault(); // Prevent page reload
 
@@ -62,7 +62,7 @@ function getDeals(page, keyword) {
     if (document.getElementById("homepage-high").value != "") {
         url += "&upperPrice=" + document.getElementById("homepage-high").value;
     }
-    
+
     url += "&sortBy=Title";
     var pageUrl = url + "&pageNumber=" + page;
 
@@ -84,7 +84,7 @@ function getDeals(page, keyword) {
 
 // master list complied, show sections of it in pages
 var currentPage;
-var totalPageNumber;  
+var totalPageNumber;
 function pageOne() {
     event.preventDefault(); // Prevent page reload
     totalPageNumber = Math.ceil((listOfDeals.length)/20); // 20 deals per page? Math.ceil rounds up
@@ -130,7 +130,7 @@ function nextDeal() {
     alert("Next"); //TEST DELETE WHEN DONE
     currentPage += 1;
     document.getElementById("page-label").innerHTML = "Page " + currentPage;
-    
+
     var deals = [];
     document.getElementById("prev-deal").style.display = "block";
     // if next (now current) page is the last page, then you can't go on
@@ -159,9 +159,9 @@ function addDeals(deals) {
 
     // header row
     var header = document.createElement("tr");
-    var headerCells = new Array("Name", "Sale", "Standard", "Savings", "Steam Rating", "Release Date", "Store");
+    var headerCells = new Array("Name", "Sale", "Standard", "Savings", "Rating", "Release Date", "Store");
     headerCells.forEach(function(string) {
-        var cell = document.createElement("th"); 
+        var cell = document.createElement("th");
         cell.innerHTML = string;
         header.append(cell);
     });
@@ -173,6 +173,7 @@ function addDeals(deals) {
         row.id = "row-" + index;
 
         var name = document.createElement("td");
+        name.id = "name_id"
         name.innerHTML = deal.title;
         row.append(name);
 
@@ -196,11 +197,11 @@ function addDeals(deals) {
             rating.innerHTML = "N/A";
         }
         row.append(rating);
-        
+
         //https://stackoverflow.com/questions/10040291/converting-a-unix-timestamp-to-formatted-date-string
         var date = document.createElement("td");
         if (deal.releaseDate != 0) {
-            var milliseconds = deal.releaseDate * 1000 
+            var milliseconds = deal.releaseDate * 1000
             var dateObject = new Date(milliseconds)
             date.innerHTML = dateObject.toLocaleDateString() //2019-12-9 10:30:15
         }
