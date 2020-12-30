@@ -210,12 +210,12 @@ function addDeals(deals) {
         }
         row.append(date);
 
-        // var store  = document.createElement("td");
-        // store.innerHTML = idToStoreName.get(deal.storeID).name;
-        var store  = document.createElement("img");
-        store.src = "https://cheapshark.com" + idToStoreName.get(deal.storeID).images.icon;
-        store.alt = idToStoreName.get(deal.storeID).name;
-        store.title = idToStoreName.get(deal.storeID).name;
+        var store  = document.createElement("td");
+        var storePic = document.createElement("img");
+        storePic.src = "https://cheapshark.com" + idToStoreName.get(deal.storeID).images.icon;
+        storePic.alt = idToStoreName.get(deal.storeID).name;
+        storePic.title = idToStoreName.get(deal.storeID).name;
+        store.append(storePic);
         row.append(store);
 
         results.append(row);
