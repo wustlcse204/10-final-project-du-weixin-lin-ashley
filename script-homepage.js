@@ -87,14 +87,14 @@ var currentPage;
 var totalPageNumber;
 function pageOne() {
     event.preventDefault(); // Prevent page reload
-    totalPageNumber = Math.ceil((listOfDeals.length)/20); // 20 deals per page? Math.ceil rounds up
+    totalPageNumber = Math.ceil((listOfDeals.length)/6); // 20 deals per page? Math.ceil rounds up
 
     alert("Showing page one"); //TEST DELETE WHEN DONE
     currentPage = 1;
     document.getElementById("page-label").innerHTML = "Page " + currentPage;
 
     var deals = [];
-    if (listOfDeals.length <= 20) {
+    if (listOfDeals.length <= 6) {
         document.getElementById("next-deal").style.display = "none";
         for (var i = 0; i < listOfDeals.length; i++) {
             deals.push(listOfDeals[i]);
@@ -102,7 +102,7 @@ function pageOne() {
     }
     else {
         document.getElementById("next-deal").style.display = "block";
-        for (var i = (currentPage-1)*20; i < currentPage*20; i++) {
+        for (var i = (currentPage-1)*6; i < currentPage*6; i++) {
             deals.push(listOfDeals[i]);
         }
     }
@@ -120,7 +120,7 @@ function prevDeal() {
     if (currentPage == 1) {
         document.getElementById("prev-deal").style.display = "none";
     }
-    for (var i = (currentPage-1)*20; i < currentPage*20; i++) {
+    for (var i = (currentPage-1)*6; i < currentPage*6; i++) {
         deals.push(listOfDeals[i]);
     }
     addDeals(deals);
@@ -136,12 +136,12 @@ function nextDeal() {
     // if next (now current) page is the last page, then you can't go on
     if (currentPage == totalPageNumber) {
         document.getElementById("next-deal").style.display = "none";
-        for (var i = (currentPage-1)*20; i < listOfDeals.length; i++) {
+        for (var i = (currentPage-1)*6; i < listOfDeals.length; i++) {
             deals.push(listOfDeals[i]);
         }
     }
     else {
-        for (var i = (currentPage-1)*20; i < currentPage*20; i++) {
+        for (var i = (currentPage-1)*6; i < currentPage*6; i++) {
             deals.push(listOfDeals[i]);
         }
     }
