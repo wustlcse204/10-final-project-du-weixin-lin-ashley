@@ -55,15 +55,14 @@
       <div id="top-bar-with-search">
         <p id="title-logo">GameDeals</p>
         <div id="top-bar-search-bar">
-          <form id="">
+          <form id="game-form">
             <input type="text" id="submission" class="search-input" placeholder="Search by Title" required>
             <button id="search-btn" type="submit"><i id="search-bar-icon" class="fas fa-search"></i></button>
           </form>
         </div>
       </div>
       <div id="deal-of-the-day">
-        <p>&mdash; Deal of the Day</p>
-        <h1 id="deal-heading">Tiger Fighter 1931</h1>
+        <p id="deal-heading">Most Popular</p>
       </div>
       <form id="homepage-search" class="row">
         <div class="form-group col-5">
@@ -80,15 +79,19 @@
         </div>
         <button id="homepage-search-btn"><i class="fas fa-search"></i></button>
       </form>
+      <!-- <button type="submit" id="prev-deal">Prev</button>
+      <button type="submit" id="next-deal">Next</button> -->
+      <!-- <div id="page-label"></div> -->
 
-      <button type="submit" id="prev-deal">Prev</button>
-      <button type="submit" id="next-deal">Next</button>
-      <div id="results-label"></div>
-      <div id="page-label"></div>
+      <div id="page-results">
+        <button type="submit" class="page-results-buttons" id="prev-deal">Previous Page</button>
+        <div id="page-label"></div> <!--TEST DELETE WHEN DONE-->
+        <div id="results-label"></div>
+        <button type="submit" class="page-results-buttons" id="next-deal">Next Page</button>
+      </div>
       <table id="deal-table">
         <!-- empty for now -->
       </table>
-      
     </div>
   </div>
 
