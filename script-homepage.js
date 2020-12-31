@@ -3,18 +3,31 @@ var idToStoreName = new Map();
 getStores(idToStoreName);
 console.log(idToStoreName); //TEST DELETE WHEN DONE
 
-// currently bound to the homepage search, TODO: MAKE ONE FOR EACH FORM, UNIQUE IDS FOR EACH
+// currently bound to the homepage search
 const dealForm = document.getElementById("homepage-search");
 dealForm.addEventListener("submit", makeDealsList, false);   //triggers submission & making of ToDo via event listener
+
+// adds class to search form to decide what to filter based on, changes deal-heading
+var sorts = document.getElementsByClassName("sort");
+for (sorter of sorts) {
+    sorter.addEventListener("click", addClass);
+}
+function addClass() {
+    document.getElementById("deal-heading").innerHTML = this.innerHTML;
+    dealForm.classList.remove(dealForm.classList[1]);
+    dealForm.classList.add(this.id);
+}
 
 // kicks off a loop jumping between getDeals and getResults until listOfDeals is filled
 var listOfDeals = [];
 var pageVar;
+var filter;
 function makeDealsList() {
     event.preventDefault(); // Prevent page reloads
     // reset "masterlists"
     listOfDeals = [];
     pageVar = 0;
+    filter = this.classList[1];  //gets the criteria to filter by in the class
 
     // get keyword and kick off recursive
     var keyword = document.getElementById("homepage-title").value;
@@ -61,7 +74,7 @@ function getDeals(page, keyword) {
         url += "&upperPrice=" + document.getElementById("homepage-high").value;
     }
 
-    url += "&sortBy=Title";
+    url += "&sortBy=" + filter;
     var pageUrl = url + "&pageNumber=" + page;
 
     var xhttp = new XMLHttpRequest();
@@ -95,13 +108,13 @@ function pageOne() {
     if (listOfDeals.length <= 6) {
         document.getElementById("next-deal").style.display = "none";
         for (var i = 0; i < listOfDeals.length; i++) {
-            deals.push(listOfDeals[i]);
+            deals.push({deal: listOfDeals[i], index: i});
         }
     }
     else {
         document.getElementById("next-deal").style.display = "block";
         for (var i = (currentPage-1)*6; i < currentPage*6; i++) {
-            deals.push(listOfDeals[i]);
+            deals.push({deal: listOfDeals[i], index: i});
         }
     }
     addDeals(deals);
@@ -119,7 +132,7 @@ function prevDeal() {
         document.getElementById("prev-deal").style.display = "none";
     }
     for (var i = (currentPage-1)*6; i < currentPage*6; i++) {
-        deals.push(listOfDeals[i]);
+        deals.push({deal: listOfDeals[i], index: i});
     }
     addDeals(deals);
 }
@@ -135,12 +148,12 @@ function nextDeal() {
     if (currentPage == totalPageNumber) {
         document.getElementById("next-deal").style.display = "none";
         for (var i = (currentPage-1)*6; i < listOfDeals.length; i++) {
-            deals.push(listOfDeals[i]);
+            deals.push({deal: listOfDeals[i], index: i});
         }
     }
     else {
         for (var i = (currentPage-1)*6; i < currentPage*6; i++) {
-            deals.push(listOfDeals[i]);
+            deals.push({deal: listOfDeals[i], index: i});
         }
     }
     addDeals(deals);
@@ -166,30 +179,30 @@ function addDeals(deals) {
     results.append(header);
 
     // rows for each deal
-    deals.forEach(function(deal, index) {
+    deals.forEach(function(dealObj) {
         var row = document.createElement("tr");
-        row.id = "row-" + index;
+        row.id = "row-" + dealObj.index;
 
         var name = document.createElement("td");
         name.id = "name_id"
-        name.innerHTML = deal.title;
+        name.innerHTML = dealObj.deal.title;
         row.append(name);
 
         var price = document.createElement("td");
-        price.innerHTML = "$" + deal.salePrice;
+        price.innerHTML = "$" + dealObj.deal.salePrice;
         row.append(price);
 
         var normal = document.createElement("td");
-        normal.innerHTML = "$" + deal.normalPrice;
+        normal.innerHTML = "$" + dealObj.deal.normalPrice;
         row.append(normal);
 
         var savings = document.createElement("td");
-        savings.innerHTML = Math.round(deal.savings) + "%";
+        savings.innerHTML = Math.round(dealObj.deal.savings) + "%";
         row.append(savings);
 
         var rating = document.createElement("td");
-        if (deal.steamRatingPercent != 0) {
-            rating.innerHTML = deal.steamRatingPercent;
+        if (dealObj.deal.steamRatingPercent != 0) {
+            rating.innerHTML = dealObj.deal.steamRatingPercent;
         }
         else {
             rating.innerHTML = "N/A";
@@ -198,8 +211,8 @@ function addDeals(deals) {
 
         //https://stackoverflow.com/questions/10040291/converting-a-unix-timestamp-to-formatted-date-string
         var date = document.createElement("td");
-        if (deal.releaseDate != 0) {
-            var milliseconds = deal.releaseDate * 1000
+        if (dealObj.deal.releaseDate != 0) {
+            var milliseconds = dealObj.deal.releaseDate * 1000
             var dateObject = new Date(milliseconds)
             date.innerHTML = dateObject.toLocaleDateString() //2019-12-9 10:30:15
         }
@@ -211,13 +224,11 @@ function addDeals(deals) {
         var store  = document.createElement("td");
         store.style.textAlign = "center";
         var storePic = document.createElement("img");
-        storePic.src = "https://cheapshark.com" + idToStoreName.get(deal.storeID).images.icon;
-        storePic.alt = idToStoreName.get(deal.storeID).name;
-        storePic.title = idToStoreName.get(deal.storeID).name;
+        storePic.src = "https://cheapshark.com" + idToStoreName.get(dealObj.deal.storeID).images.icon;
+        storePic.alt = idToStoreName.get(dealObj.deal.storeID).name;
+        storePic.title = idToStoreName.get(dealObj.deal.storeID).name;
         store.append(storePic);
         row.append(store);
-
-        console.log(getByValue(idToStoreName, storePic.title))
 
         results.append(row);
     });

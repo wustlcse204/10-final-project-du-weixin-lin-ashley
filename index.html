@@ -23,13 +23,16 @@
       <ul id="sidebar-items-list" class="fa-ul">
         <li><i class="fas fa-gamepad sidebar-item-icon"></i>Games</li>
           <ul>
-            <li>Most Popular</li>
+            <li>All A-Z</li>
             <li>Highest Rated</li>
+            <li>Newest Games</li>
           </ul>
         <li><i class="fas fa-tags sidebar-item-icon"></i>Deals</li>
           <ul>
-            <li>Lowest to Highest</li>
-            <li>Highest to Lowest</li>
+            <li class="sort" id="Reviews">Most Popular</li>
+            <li class="sort" id="Savings">Best Deals</li>
+            <li class="sort" id="recent">Recent Deals</li>
+            <li class="sort" id="Price">Lowest to Highest</li>
           </ul>
         <li><i class="fas fa-warehouse sidebar-item-icon"></i>Stores</li>
           <ul>
@@ -67,7 +70,7 @@
       <div id="deal-of-the-day">
         <p id="deal-heading">Most Popular</p>
       </div>
-      <form id="homepage-search" class="row">
+      <form id="homepage-search" class="row Reviews">
         <div class="form-group col-5">
           <label class="search-form-labels">Title/Keyword</label><br>
           <input type="search" class="form-control" id="homepage-title" placeholder="Enter Your Description"></input>
