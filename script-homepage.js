@@ -22,9 +22,7 @@ function makeDealsList() {
 
     // reset form value
     document.getElementById("homepage-title").value = "";
-
-
-
+    // not resetting the price range, if you've got a price limit you're generally sticking to it
 }
 
 // get all available pages of deals by pushing sucessive pages until the next page is empty
@@ -211,12 +209,15 @@ function addDeals(deals) {
         row.append(date);
 
         var store  = document.createElement("td");
+        store.style.textAlign = "center";
         var storePic = document.createElement("img");
         storePic.src = "https://cheapshark.com" + idToStoreName.get(deal.storeID).images.icon;
         storePic.alt = idToStoreName.get(deal.storeID).name;
         storePic.title = idToStoreName.get(deal.storeID).name;
         store.append(storePic);
         row.append(store);
+
+        console.log(getByValue(idToStoreName, storePic.title))
 
         results.append(row);
     });

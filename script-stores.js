@@ -22,3 +22,12 @@ function getStores(idToStoreName) {
     xhttp2.open("GET", url, true);
     xhttp2.send();
 }
+
+// works backwards, gets store ID based on name
+function getByValue(map, name) {
+    for ([key, value] of map.entries()) {
+      if (value.name == name){
+        return key;
+      }
+    }
+  }

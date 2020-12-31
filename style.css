@@ -4,12 +4,11 @@
 }
 #main-container{
   background-color: #003236;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
 }
 #sidebar{
   width: 20%;
-
 }
 #sidebar-items-list{
   color: white;
@@ -109,6 +108,10 @@
   border-radius: 20px;
   border-color: white;
   padding: 40px;
+
+  /* Possible way of getting the container to fit the container, except it scrunches the forms up? */
+  /* height: fit-content;
+  min-height: 500px; */
 }
 #deal-of-the-day{
   background-color: #8AF6FF;
@@ -216,9 +219,11 @@
 }
 #prev-deal {
   margin: 0px;
+  display: none;
 }
 #next-deal {
   margin: 0px;
+  display: none; /*keeps the button from being pressed when there's no table*/
 }
 #page-label{
 }
