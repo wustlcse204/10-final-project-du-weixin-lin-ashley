@@ -36,24 +36,14 @@
           </ul>
         <li><i class="fas fa-warehouse sidebar-item-icon"></i>Stores</li>
           <ul>
-            <li>2Game</li>
-            <li>AllYouPlay</li>
             <li>Blizzard Shop</li>
-            <li>Direct2Drive</li>
             <li>Epic Games Store</li>
             <li>Fanatical</li>
-            <li>GameBillet</li>
-            <li>GamersGate</li>
-            <li>Gamesload</li>
-            <li>Gamesplanet</li>
             <li>GOG</li>
-            <li>GreenManGaming</li>
             <li>Humble Store</li>
-            <li>IndieGala</li>
             <li>Origin</li>
             <li>Steam</li>
             <li>Uplay</li>
-            <li>WinGameStore</li>
           </ul>
       </ul>
     </div>
@@ -90,11 +80,18 @@
         <button type="submit" class="page-results-buttons" id="prev-deal">Previous Page</button>
         <div id="page-label"></div> <!--TEST DELETE WHEN DONE-->
         <div id="results-label"></div>
+        <form id="skip">
+          Skip to page: 
+          <input id="skip-input" type="number" min="1">
+          <button type="submit" class="page-results-buttons" >Go</button>
+        </form>
         <button type="submit" class="page-results-buttons" id="next-deal">Next Page</button>
       </div>
-      <table id="deal-table">
-        <!-- empty for now -->
-      </table>
+      <div id="table-container">
+        <table id="deal-table">
+          <!-- empty for now -->
+        </table>
+      </div>
     </div>
   </div>
 

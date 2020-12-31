@@ -22,6 +22,7 @@ function addClass() {
 var listOfDeals = [];
 var pageVar;
 var filter;
+var keyword;
 function makeDealsList() {
     event.preventDefault(); // Prevent page reloads
     // reset "masterlists"
@@ -30,8 +31,8 @@ function makeDealsList() {
     filter = this.classList[1];  //gets the criteria to filter by in the class
 
     // get keyword and kick off recursive
-    var keyword = document.getElementById("homepage-title").value;
-    getDeals(pageVar, keyword);
+    keyword = document.getElementById("homepage-title").value;
+    getDeals(pageVar);
 
     // reset form value
     document.getElementById("homepage-title").value = "";
@@ -39,7 +40,7 @@ function makeDealsList() {
 }
 
 // get all available pages of deals by pushing sucessive pages until the next page is empty
-function getResults(deals, keyword) {
+function getResults(deals) {
     // page has some deals - add to master list
     if (deals.length != 0) {
         //pushes deals to the master list
@@ -47,7 +48,7 @@ function getResults(deals, keyword) {
             listOfDeals.push(deal);
         })
         pageVar += 1;
-        getDeals(pageVar, keyword);
+        getDeals(pageVar);
     }
     // no deals left - list done, publish results
     else {
@@ -60,7 +61,7 @@ function getResults(deals, keyword) {
     }
 }
 // gets one page of deals from CheapShark (each page has 60 deals)
-function getDeals(page, keyword) {
+function getDeals(page) {
     event.preventDefault(); // Prevent page reload
 
     var title =  "title=" + keyword;
@@ -103,8 +104,12 @@ function pageOne() {
     alert("Showing page one"); //TEST DELETE WHEN DONE
     currentPage = 1;
     document.getElementById("page-label").innerHTML = "Page " + currentPage;
+    document.getElementById("skip-input").max = totalPageNumber;
+    document.getElementById("skip-input").value = "";
+    document.getElementById("skip").style.display = "block";  // shows skip to page input
 
     var deals = [];
+    document.getElementById("prev-deal").style.display = "none";
     if (listOfDeals.length <= 6) {
         document.getElementById("next-deal").style.display = "none";
         for (var i = 0; i < listOfDeals.length; i++) {
@@ -160,12 +165,36 @@ function nextDeal() {
 }
 document.getElementById("prev-deal").addEventListener("click", prevDeal, false);
 document.getElementById("next-deal").addEventListener("click", nextDeal, false);
+function skipToPage() {
+    event.preventDefault(); // Prevent page reload
+
+    currentPage = document.getElementById("skip-input").value;
+    document.getElementById("prev-deal").style.display = "block";
+    document.getElementById("next-deal").style.display = "block";
+
+    var deals = [];
+    if (currentPage == 1) {
+        document.getElementById("prev-deal").style.display = "none";
+    }
+    if (currentPage == totalPageNumber) {
+        document.getElementById("next-deal").style.display = "none";
+        for (var i = (currentPage-1)*6; i < listOfDeals.length; i++) {
+            deals.push({deal: listOfDeals[i], index: i});
+        }
+    } else {
+        for (var i = (currentPage-1)*6; i < currentPage*6; i++) {
+            deals.push({deal: listOfDeals[i], index: i});
+        }
+    }
+    addDeals(deals);
+}
+document.getElementById("skip").addEventListener("submit", skipToPage);
 
 function addDeals(deals) {
     event.preventDefault(); // Prevent page reload
 
     document.getElementById("deal-table").remove(); //remove previous
-    var results = document.createElement("table");  // gets the containing form
+    var results = document.createElement("table");  // makes the containing form
     results.id = "deal-table";
 
     // header row
@@ -232,5 +261,5 @@ function addDeals(deals) {
 
         results.append(row);
     });
-    document.getElementById("mainpage").append(results);
+    document.getElementById("table-container").append(results);
 }

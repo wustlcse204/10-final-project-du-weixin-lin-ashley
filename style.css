@@ -190,16 +190,6 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
-#game-result {
-  border: 2px solid hotpink;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#deal-result {
-  border: 2px solid blue;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 #page-results{
   display: flex;
   justify-content: space-between;
@@ -225,7 +215,10 @@
   margin: 0px;
   display: none; /*keeps the button from being pressed when there's no table*/
 }
-#page-label{
+#page-label {
+}
+#skip {
+  display: none;
 }
 /* css for tables? */
 #deal-table {
