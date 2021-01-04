@@ -45,7 +45,9 @@ function getResults(deals) {
     if (deals.length != 0) {
         //pushes deals to the master list
         deals.forEach(function(deal) {
+            // deals.addEventListener("click", displayImage);
             listOfDeals.push(deal);
+            // deal.style.backgroundColor = "green";
         })
         pageVar += 1;
         getDeals(pageVar);
