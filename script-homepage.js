@@ -3,6 +3,11 @@ var idToStoreName = new Map();
 getStores(idToStoreName);
 console.log(idToStoreName); //TEST DELETE WHEN DONE
 
+function hamburgerMenu(){
+  let navigationBar = document.getElementById("sidebar");
+  navigationBar.classList.toggle('active');
+}
+
 // currently bound to the homepage search
 const dealForm = document.getElementById("homepage-search");
 dealForm.addEventListener("submit", makeDealsList, false);   //triggers submission & making of ToDo via event listener
