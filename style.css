@@ -105,7 +105,7 @@
 }
 #mainpage{
   background-color: white;
-  width: 80%;
+  width: 100%;
   margin: 10px;
   border-radius: 20px;
   border-color: white;
@@ -175,7 +175,7 @@
     padding: 0px;
     height: 300px;
     line-height: 0px;
-    margin-top: -230px;
+    margin-top: -310px;
   }
   .form-group{
     height: 40px;
@@ -185,7 +185,13 @@
     justify-content: center;
   }
   #deal-of-the-day{
-    height: 300px;
+    height: 380px;
+  }
+  #page-label{
+    display: none;
+  }
+  #results-label{
+    display: none;
   }
 }
 .form-group{
@@ -198,7 +204,7 @@
   height: 35px;
 }
 #homepage-search-btn{
-  width: 50px;
+  width: 100%;
   height: 50px;
   border-radius: 10px;
   font-size: 22px;
@@ -260,6 +266,17 @@
 #next-deal {
   margin: 0px;
   display: none; /*keeps the button from being pressed when there's no table*/
+}
+@media only screen and (max-width: 600px) {
+  .page-results-buttons{
+    background-color: #00909B;
+    border-radius: 30px;
+    padding: 5px 5px;
+    line-height: normal;
+  }
+  #mainpage{
+    padding: 20px;
+  }
 }
 #page-label {
 }
