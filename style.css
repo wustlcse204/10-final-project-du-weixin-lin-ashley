@@ -41,6 +41,7 @@
   color: #00909B;
   background-color: white;
   font-weight: 900;
+  transition: .4s;
 }
 #sidebar-items-list > li:hover .sidebar-item-icon{
   color: white;
@@ -56,6 +57,8 @@
   text-decoration: underline;
   background-color: #00909B;
   font-weight: 700;
+  transition: .4s;
+
 }
 #title-logo{
   color: Silver;
@@ -110,7 +113,6 @@
   border-radius: 20px;
   border-color: white;
   padding: 40px;
-  border: solid 1px red;
   height: fit-content;
   /* Possible way of getting the container to fit the container, except it scrunches the forms up? */
   /*
@@ -318,11 +320,72 @@
 #deal-table tr{
   border: solid 1px rgba(192,192,192, .3);
   line-height: 50px;
-  transition: .75s;  /*~fancy*/
+  transition: .3s;  /*~fancy*/
+}
+#deal-table tr:nth-child(1):hover{
+  color: black;
 }
 #deal-table tr:hover {
-  background-color: lightblue;
+  background-color: #00909B;
+  color: white;
 }
 #deal-table td{
   padding: 0px 10px;
+}
+#popupContainer{
+  display: flex;
+  justify-content: center;
+}
+#popup{
+  position: absolute;
+  width: 335px;
+  height: fit-content;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0px 0px 20px Silver;
+  -ms-transform: translateY(-50%);
+transform: translateY(-50%);
+  background-color: white;
+  z-index: 1;
+}
+#exitPopupContainer{
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+#exitPopup{
+  font-size: 25px;
+  border: none;
+  background-color: white;
+  margin-top: -10px;
+}
+#popup-thumbnail{
+  background-color: black;
+  height: 100px;
+  width: 100%;
+}
+#popup-title{
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 25px;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+.popup-details{
+  font-size: 18px;
+  text-align: center;
+  line-height: 15px;
+}
+#popup-button{
+  width: 80%;
+  position: relative;
+  right: 10%;
+  left: 10%;
+  height: 60px;
+  border-radius: 60px;
+  border: none;
+  background-color: #00909B;
+  color: white;
 }
