@@ -4,7 +4,7 @@
 }
 #main-container{
   background-color: #003236;
-  height: 100vh;
+  height: auto;
   display: flex;
 }
 #sidebar-items-list{
@@ -388,4 +388,8 @@ transform: translateY(-50%);
   border: none;
   background-color: #00909B;
   color: white;
+}
+
+#name_id:hover {
+  text-decoration: underline;
 }
