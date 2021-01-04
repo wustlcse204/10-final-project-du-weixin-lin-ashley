@@ -3,6 +3,11 @@ var idToStoreName = new Map();
 getStores(idToStoreName);
 console.log(idToStoreName); //TEST DELETE WHEN DONE
 
+function hamburgerMenu(){
+  let navigationBar = document.getElementById("sidebar");
+  navigationBar.classList.toggle('active');
+}
+
 // currently bound to the homepage search
 const dealForm = document.getElementById("homepage-search");
 dealForm.addEventListener("submit", makeDealsList, false);   //triggers submission & making of ToDo via event listener
@@ -211,9 +216,75 @@ function addDeals(deals) {
     deals.forEach(function(dealObj) {
         var row = document.createElement("tr");
         row.id = "row-" + dealObj.index;
+        row.addEventListener("click", function(){
+
+          var mainpage = document.getElementById("mainpage");
+          var tableContainer = document.getElementById("table-container");
+          var popupContainer = document.createElement("div");
+          popupContainer.id="popupContainer";
+
+          var newPopup = document.createElement("div");
+          newPopup.id = "popup";
+
+          //creates x symbol to exit the popup
+          var exitPopup = document.createElement("button");
+          exitPopup.id="exitPopup";
+          exitPopup.innerHTML = '<i class="fas fa-times"></i>';
+          exitPopup.onclick = function(){
+            newPopup.style.display = "none";
+          };
+          //this simply moves the x symbol to the right side of the box
+          var exitPopupContainer= document.createElement("div")
+          exitPopupContainer.id = "exitPopupContainer";
+          exitPopupContainer.append(exitPopup);
+          newPopup.append(exitPopupContainer);
+
+          var gameThumbnail = document.createElement("img");
+          gameThumbnail.id="popup-thumbnail";
+          gameThumbnail.src=dealObj.deal.thumb;
+          newPopup.append(gameThumbnail);
+
+          var popupName = document.createElement("p");
+          popupName.id = "popup-title";
+          popupName.innerHTML = dealObj.deal.title;
+          newPopup.append(popupName);
+
+          var popupPrice = document.createElement("p");
+          popupPrice.className = "popup-details";
+          popupPrice.innerHTML = "Price: $" + dealObj.deal.salePrice;
+          newPopup.append(popupPrice);
+
+          var popupSavings = document.createElement("p");
+          popupSavings.className = "popup-details";
+          popupSavings.innerHTML = "Savings: " + Math.round(dealObj.deal.savings) + "%";
+          newPopup.append(popupSavings);
+
+          var popupLinkBtn = document.createElement("button");
+          popupLinkBtn.id = "popup-button";
+          popupLinkBtn.innerHTML = "View Site for Deal Details";
+          var storePic = document.createElement("img");
+          storePic.src = "https://cheapshark.com" + idToStoreName.get(dealObj.deal.storeID).images.icon;
+          storePic.alt = idToStoreName.get(dealObj.deal.storeID).name;
+          storePic.title = idToStoreName.get(dealObj.deal.storeID).name;
+          storePic.style.paddingRight="10px";
+          popupLinkBtn.prepend(storePic);
+          newPopup.append(popupLinkBtn);
+          popupLinkBtn.onclick = function(){
+            window.open("https://www.cheapshark.com/redirect?dealID=" + dealObj.deal.dealID);
+          };
+          document.addEventListener('mouseup', function(event){
+            var isClickInside = popupContainer.contains(event.target);
+            if (!isClickInside){
+              newPopup.style.backgroundColor = "green";
+              newPopup.style.display = "none";
+            }
+          });
+          popupContainer.append(newPopup);
+          mainpage.insertBefore(popupContainer, tableContainer);
+        }, false);
 
         var name = document.createElement("td");
-        name.id = "name_id"
+        name.id = "name_id";
         name.innerHTML = dealObj.deal.title;
         row.append(name);
 
