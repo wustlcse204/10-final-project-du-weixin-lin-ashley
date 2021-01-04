@@ -7,9 +7,6 @@
   height: 100vh;
   display: flex;
 }
-#sidebar{
-  width: 20%;
-}
 #sidebar-items-list{
   color: white;
   list-style-type: none;
@@ -69,6 +66,11 @@
   display: flex;
   justify-content: space-between;
 }
+#hamburger-icon{
+  background-color: white;
+  border: none;
+  display: none;
+}
 #top-bar-search-bar{
   background-color: white;
   border-radius: 10px;
@@ -108,9 +110,10 @@
   border-radius: 20px;
   border-color: white;
   padding: 40px;
-
+  border: solid 1px red;
+  height: fit-content;
   /* Possible way of getting the container to fit the container, except it scrunches the forms up? */
-  /* height: fit-content;
+  /*
   min-height: 500px; */
 }
 #deal-of-the-day{
@@ -141,6 +144,49 @@
   box-shadow: 0px 0px 10px Silver;
   align-items: center;
   justify-content: space-between;
+}
+#sidebar{
+  border: white solid 1px;
+}
+@media only screen and (max-width: 1100px) {
+  #sidebar.active{
+    width: 250px;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    background-color: #003236;
+    height: inherit;
+  }
+  #hamburger-icon{
+    display: block;
+  }
+  #sidebar{
+    display: none;
+  }
+}
+@media only screen and (min-width: 1100px) {
+  #sidebar{
+    width: 20%;
+    display: block;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #homepage-search{
+    padding: 0px;
+    height: 300px;
+    line-height: 0px;
+    margin-top: -230px;
+  }
+  .form-group{
+    height: 40px;
+  }
+  #center-button{
+    display: flex;
+    justify-content: center;
+  }
+  #deal-of-the-day{
+    height: 300px;
+  }
 }
 .form-group{
   margin-top: 15px;
