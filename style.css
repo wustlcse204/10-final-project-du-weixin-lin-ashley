@@ -4,7 +4,7 @@
 }
 #main-container{
   background-color: #003236;
-  /* height: 100vh; */
+  height: 100vh;
   display: flex;
 }
 #sidebar{
@@ -115,7 +115,7 @@
 }
 #deal-of-the-day{
   background-color: #8AF6FF;
-  height: 25%;
+  height: 170px;
   border-radius: 20px;
   padding: 30px;
   border: none;
@@ -228,6 +228,22 @@
   box-shadow: 0px 0px 3px rgba(192,192,192, 1);
   display: block;
   padding: 0px;
+  width: 850px;
+}
+@media only screen and (min-width: 1130px) {
+  #deal-table {
+    width: auto;
+  }
+  #deal-table th:nth-child(1){
+    width: 50%;
+  }
+  #deal-table th:nth-child(6){
+    width: 15%;
+  }
+  #deal-table th:nth-child(2), #deal-table th:nth-child(3),
+  #deal-table th:nth-child(4), #deal-table th:nth-child(5), #deal-table th:nth-child(7){
+    width: 9%;
+  }
 }
 #deal-table th{
   background-color: #8AF6FF;
@@ -235,16 +251,7 @@
   padding: 10px;
   line-height: 30px;
 }
-#deal-table th:nth-child(1){
-  width: 50%;
-}
-#deal-table th:nth-child(6){
-  width: 15%;
-}
-#deal-table th:nth-child(2), #deal-table th:nth-child(3),
-#deal-table th:nth-child(4), #deal-table th:nth-child(5), #deal-table th:nth-child(7){
-  width: 9%;
-}
+
 #deal-table tr{
   border: solid 1px rgba(192,192,192, .3);
   line-height: 50px;
