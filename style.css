@@ -401,7 +401,7 @@
 }
 @media only screen and (max-width: 1000px) {
   #deal-table {
-    width: 1000px;
+    width: 850px;
   }
   #deal-table th:nth-child(1){
     width: 50%;
