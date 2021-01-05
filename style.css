@@ -4,7 +4,8 @@
 }
 #main-container{
   background-color: #003236;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   display: flex;
 }
 #sidebar-items-list{
