@@ -52,138 +52,159 @@
             <p id="title-logo">GameDeals</p>
             <button id="hamburger-icon" class="toggle" onclick="hamburgerMenu()"><i class="fas fa-bars"></i></button>
         </div>
-        <div id="deal-of-the-day">
-            <p id="deal-heading">Most Popular</p>
+        <div id="adv-deal-of-the-day">
+            <p id="deal-heading">Advanced Search</p>
         </div>
-        
+
         <!-- hypothetical advanced form -->
         <!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
+        <div id="advanced-search-container">
         <form id="advanced-search">
-            <div class="form-row">
-                <div class="form-group col-5">
+            <div id="advanced-top-row" class="form-row">
+              <div class="form-group col-4">
                 <label class="search-form-labels">Title/Keyword*</label><br>
                 <input type="search" class="form-control" id="advanced-title" placeholder="Enter Your Description" required></input>
-                <input type="checkbox" id="advanced-exact">
-                <label for="advanced-exact">Match Exactly</label>
-                <input type="checkbox" id="advanced-onsale">
-                <label for="advanced-onsale">On Sale Only</label>
+                <div id="title-checkboxes">
+                  <div class="form-check checkbox-container form-check-inline">
+                    <input type="checkbox" id="advanced-exact">
+                    <label class="checkbox-label" for="advanced-exact">Match Exactly</label>
+                  </div>
+                  <div class="checkbox-container form-check-inline">
+                    <input type="checkbox" id="advanced-onsale">
+                    <label class="checkbox-label" for="advanced-onsale">On Sale Only</label>
+                  </div>
                 </div>
-                <div class="form-group col-3">
+              </div>
+
+              <div class="form-group col-4">
                 <label>Lowest Price</label><br>
                 <input type="number" class="form-control" id="advanced-low" placeholder="$0.00" min="0" max="50"></input>
-                </div>
-                <div class="form-group col-3">
+              </div>
+              <div class="form-group col-4">
                 <label>Highest Price</label><br>
                 <input type="number" class="form-control" id="advanced-high" placeholder="$50.00" min="0" max="50"></input>
+              </div>
+            </div>
+
+            <div id="sort-by-form" class="form-row">
+
+                <div class="form-group col-md-5">
+                  <label for="advanced-sort-by">Sort By</label><br>
+                  <select id="advanced-sort-by">
+                      <option value="Deal Rating">Deal Rating</option>
+                      <option value="Title">Title</option>
+                      <option value="Savings">Savings</option>
+                      <option value="Price">Price</option>
+                      <option value="Metacritic">Metacritic</option>
+                      <option value="Reviews">Reviews</option>
+                      <option value="Release">Release</option>
+                      <option value="Store">Store</option>
+                      <option value="recent">Most Recent</option>
+                  </select>
+                  <div id="descending-container" class="form-group form-check-inline">
+                    <input type="checkbox" id="advanced-desc">
+                    <label class="checkbox-label" for="advanced-desc">Descending Order</label>
+                  </div>
+                </div>
+
+                <div id="min-metacritic-rating" class="form-group col-md-3">
+                  <label>Min Metacritic Rating</label><br>
+                  <input type="number" class="form-control" id="advanced-metacritic" placeholder="0-100" min="0" max="100"></input>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Min Steam Rating</label><br>
+                  <input type="number" class="form-control" id="advanced-steam" placeholder="0-100" min="0" max="100"></input>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group col-3">
-                <label for="advanced-sort-by">Sort By</label><br>
-                <select id="advanced-sort-by">
-                    <option value="Deal Rating">Deal Rating</option>
-                    <option value="Title">Title</option>
-                    <option value="Savings">Savings</option>
-                    <option value="Price">Price</option>
-                    <option value="Metacritic">Metacritic</option>
-                    <option value="Reviews">Reviews</option>
-                    <option value="Release">Release</option>
-                    <option value="Store">Store</option>
-                    <option value="recent">Most Recent</option>
-                </select>
-                </div>
-                <div class="form-group col-3">
-                <input type="checkbox" id="advanced-desc">
-                <label for="advanced-desc">Sort Descending</label>
-                </div>
-                <div class="form-group col-3">
-                <label>Minimum Metacritic Rating</label><br>
-                <input type="number" class="form-control" id="advanced-metacritic" placeholder="0-100" min="0" max="100"></input>
-                </div>
-                <div class="form-group col-3">
-                <label>Minimum Steam Rating</label><br>
-                <input type="number" class="form-control" id="advanced-steam" placeholder="0-100" min="0" max="100"></input>
-                </div>
-            </div>
-
-            <label>Filter By Store</label>
+            <label id="filter-label">Filter By Store</label>
             <div class="form-row" id="advanced-stores">
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="1">
-                <label class="form-check-label">Steam</label>
+              <div class="col">
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="1">
+                  <label class="form-check-label">Steam</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="2">
-                <label class="form-check-label">GamersGate</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="2">
+                  <label class="form-check-label">GamersGate</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="3">
-                <label class="form-check-label">GreenManGaming</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="3">
+                  <label class="form-check-label">GreenManGaming</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="6">
-                <label class="form-check-label">Direct2Drive</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="6">
+                  <label class="form-check-label">Direct2Drive</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="7">
-                <label class="form-check-label">GOG</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="7">
+                  <label class="form-check-label">GOG</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="8">
-                <label class="form-check-label">Origin</label>
+              </div>
+              <div class="col">
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="8">
+                  <label class="form-check-label">Origin</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="11">
-                <label class="form-check-label">Humble Store</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="11">
+                  <label class="form-check-label">Humble Store</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="13">
-                <label class="form-check-label">Uplay</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="13">
+                  <label class="form-check-label">Uplay</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="15">
-                <label class="form-check-label">Fanatical</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="15">
+                  <label class="form-check-label">Fanatical</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="21">
-                <label class="form-check-label">WinGameStore</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="21">
+                  <label class="form-check-label">WinGameStore</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="23">
-                <label class="form-check-label">GameBillet</label>
+              </div>
+              <div class="col">
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="23">
+                  <label class="form-check-label">GameBillet</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="25">
-                <label class="form-check-label">Epic Games Store</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="25">
+                  <label class="form-check-label">Epic Games Store</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="27">
-                <label class="form-check-label">Gamesplanet</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="27">
+                  <label class="form-check-label">Gamesplanet</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="28">
-                <label class="form-check-label">Gamesload</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="28">
+                  <label class="form-check-label">Gamesload</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="29">
-                <label class="form-check-label">2Game</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="29">
+                  <label class="form-check-label">2Game</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="30">
-                <label class="form-check-label">IndieGala</label>
+              </div>
+
+              <div class="col">
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="30">
+                  <label class="form-check-label">IndieGala</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="31">
-                <label class="form-check-label">Blizzard Shop</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="31">
+                  <label class="form-check-label">Blizzard Shop</label>
                 </div>
-                <div class="form-check form-check-inline col-2">
-                <input class="form-check-input" type="checkbox" value="32">
-                <label class="form-check-label">AllYouPlay</label>
+                <div class="form-check form-check-inline form-width">
+                  <input class="form-check-input" type="checkbox" value="32">
+                  <label class="form-check-label">AllYouPlay</label>
                 </div>
+              </div>
+
             </div>
-            <button><i class="fas fa-search"></i></button>
+            <button class="homepage-search-btn" id="adv-search-btn"><i class="fas fa-search"></i></button>
         </form>
+        </div>
 
         <div id="page-results">
             <button type="submit" class="page-results-buttons" id="prev-deal">Previous Page</button>
@@ -222,4 +243,3 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
-
