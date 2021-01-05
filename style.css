@@ -8,6 +8,9 @@
   min-height: 100vh;
   display: flex;
 }
+.sidebar-color{
+  color: white;
+}
 #sidebar-items-list{
   color: white;
   list-style-type: none;
@@ -38,11 +41,12 @@
   padding-left: 30px;
   display: flex;
 }
-#sidebar-items-list > li:hover {
+#sidebar-items-list > li:hover, .sidebar-color:hover{
   color: #00909B;
   background-color: white;
   font-weight: 900;
   transition: .4s;
+  text-decoration: none;
 }
 #sidebar-items-list > li:hover .sidebar-item-icon{
   color: white;
@@ -410,7 +414,7 @@
 #popupContainer{
   display: flex;
   position: fixed;
-  top: 40%; 
+  top: 40%;
   right: 50%;
   justify-content: center;
 }
