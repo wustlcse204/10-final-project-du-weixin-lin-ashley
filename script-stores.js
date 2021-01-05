@@ -30,4 +30,4 @@ function getByValue(map, name) {
         return key;
       }
     }
-  }
+}
