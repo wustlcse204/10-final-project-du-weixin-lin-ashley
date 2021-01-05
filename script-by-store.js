@@ -1,17 +1,53 @@
 // makes map of ids to store to call on later
 var idToStoreName = new Map();
 getStores(idToStoreName);
+function getStores(idToStoreName) {
+    //event.preventDefault(); // Prevent page reload
+    var url = "https://www.cheapshark.com/api/1.0/stores";
+
+    var xhttp2 = new XMLHttpRequest();
+    xhttp2.onreadystatechange = function() {
+        // Wait for readyState = 4 & 200 response
+        if (this.readyState == 4 && this.status == 200) {
+            var stores = JSON.parse(this.responseText);   // gets array of games matching search
+            stores.forEach(function(store) {
+                if (store.isActive == 1) {
+                    // maps store id to it's name and a set of images
+                    idToStoreName.set(store.storeID, {name: store.storeName, images: store.images}); 
+                }
+            });
+            makeStoreDealsList();  //guarantees this map will be done when the other functions run
+        }
+        else if (this.readyState == 4) {
+            console.log(this.responseText);
+        }
+    };
+
+    xhttp2.open("GET", url, true);
+    xhttp2.send();
+}
 console.log(idToStoreName); //TEST DELETE WHEN DONE
+
 
 function hamburgerMenu(){
   let navigationBar = document.getElementById("sidebar");
   navigationBar.classList.toggle('active');
 }
 
+// adds class to search form to decide what to filter based on, changes deal-heading
+var filters = document.getElementsByClassName("filter");
+for (filter of filters) {
+    filter.addEventListener("click", addClass);
+}
+function addClass() {
+    document.getElementById("which-store").innerHTML = this.innerHTML;
+    storeFilter = this.id; 
+    makeStoreDealsList();
+}
+
 var listOfDeals; 
 var pageVar;
-
-makeStoreDealsList(); 
+var storeFilter = "1"; //always start off with steam
 function makeStoreDealsList() {
     // event.preventDefault(); // Prevent page reloads
     // reset "masterlists", master variables
@@ -24,8 +60,13 @@ function makeStoreDealsList() {
 
 // get all available pages of deals by pushing sucessive pages until the next page is empty
 function getStoreResults(deals) {
-    // stop at 100
-    if (pageVar == 5) {
+    //pushes deals to the master list
+    deals.forEach(function(deal) {
+        listOfDeals.push(deal);
+    })
+
+    // stop at 1000 - last page = 1000/50 - 1
+    if (pageVar == 1) {
         console.log("Loop end");
         console.log(listOfDeals);
 
@@ -35,10 +76,6 @@ function getStoreResults(deals) {
     }
     // no deals left - list done, publish results
     else {
-        //pushes deals to the master list
-        deals.forEach(function(deal) {
-            listOfDeals.push(deal);
-        })
         pageVar += 1;
         getStoreDeals(pageVar);
     }
@@ -47,9 +84,9 @@ function getStoreResults(deals) {
 function getStoreDeals(page) {
     // event.preventDefault(); // Prevent page reload
 
-    var url = "https://www.cheapshark.com/api/1.0/deals?pageSize=20&sortBy=recent";
+    var url = "https://www.cheapshark.com/api/1.0/deals?pageSize=50&sortBy=recent";
 
-    url += "&storeID=1";
+    url += "&storeID="+storeFilter;
 
     var pageUrl = url + "&pageNumber=" + page;
     console.log(pageUrl);
@@ -178,7 +215,7 @@ function addDeals(deals) {
 
     // header row
     var header = document.createElement("tr");
-    var headerCells = new Array("Name", "Sale", "Standard", "Savings", "Rating", "Release Date", "Store");
+    var headerCells = new Array("Name", "Sale", "Standard", "Savings", "Rating", "Deal Date", "Store");
     headerCells.forEach(function(string) {
         var cell = document.createElement("th");
         cell.innerHTML = string;
@@ -192,69 +229,69 @@ function addDeals(deals) {
         row.id = "row-" + dealObj.index;
         row.addEventListener("click", function(){
 
-          var mainpage = document.getElementById("mainpage");
-          var tableContainer = document.getElementById("table-container");
-          var popupContainer = document.createElement("div");
-          popupContainer.id="popupContainer";
+            var mainpage = document.getElementById("mainpage");
+            var tableContainer = document.getElementById("table-container");
+            var popupContainer = document.createElement("div");
+            popupContainer.id="popupContainer";
 
-          var newPopup = document.createElement("div");
-          newPopup.id = "popup";
+            var newPopup = document.createElement("div");
+            newPopup.id = "popup";
 
-          //creates x symbol to exit the popup
-          var exitPopup = document.createElement("button");
-          exitPopup.id="exitPopup";
-          exitPopup.innerHTML = '<i class="fas fa-times"></i>';
-          exitPopup.onclick = function(){
-            newPopup.style.display = "none";
-          };
-          //this simply moves the x symbol to the right side of the box
-          var exitPopupContainer= document.createElement("div")
-          exitPopupContainer.id = "exitPopupContainer";
-          exitPopupContainer.append(exitPopup);
-          newPopup.append(exitPopupContainer);
+            //creates x symbol to exit the popup
+            var exitPopup = document.createElement("button");
+            exitPopup.id="exitPopup";
+            exitPopup.innerHTML = '<i class="fas fa-times"></i>';
+            exitPopup.onclick = function(){
+                newPopup.style.display = "none";
+            };
+            //this simply moves the x symbol to the right side of the box
+            var exitPopupContainer= document.createElement("div")
+            exitPopupContainer.id = "exitPopupContainer";
+            exitPopupContainer.append(exitPopup);
+            newPopup.append(exitPopupContainer);
 
-          var gameThumbnail = document.createElement("img");
-          gameThumbnail.id="popup-thumbnail";
-          gameThumbnail.src=dealObj.deal.thumb;
-          newPopup.append(gameThumbnail);
+            var gameThumbnail = document.createElement("img");
+            gameThumbnail.id="popup-thumbnail";
+            gameThumbnail.src=dealObj.deal.thumb;
+            newPopup.append(gameThumbnail);
 
-          var popupName = document.createElement("p");
-          popupName.id = "popup-title";
-          popupName.innerHTML = dealObj.deal.title;
-          newPopup.append(popupName);
+            var popupName = document.createElement("p");
+            popupName.id = "popup-title";
+            popupName.innerHTML = dealObj.deal.title;
+            newPopup.append(popupName);
 
-          var popupPrice = document.createElement("p");
-          popupPrice.className = "popup-details";
-          popupPrice.innerHTML = "Price: $" + dealObj.deal.salePrice;
-          newPopup.append(popupPrice);
+            var popupPrice = document.createElement("p");
+            popupPrice.className = "popup-details";
+            popupPrice.innerHTML = "Price: $" + dealObj.deal.salePrice;
+            newPopup.append(popupPrice);
 
-          var popupSavings = document.createElement("p");
-          popupSavings.className = "popup-details";
-          popupSavings.innerHTML = "Savings: " + Math.round(dealObj.deal.savings) + "%";
-          newPopup.append(popupSavings);
+            var popupSavings = document.createElement("p");
+            popupSavings.className = "popup-details";
+            popupSavings.innerHTML = "Savings: " + Math.round(dealObj.deal.savings) + "%";
+            newPopup.append(popupSavings);
 
-          var popupLinkBtn = document.createElement("button");
-          popupLinkBtn.id = "popup-button";
-          popupLinkBtn.innerHTML = "View Site for Deal Details";
-          var storePic = document.createElement("img");
-          storePic.src = "https://cheapshark.com" + idToStoreName.get(dealObj.deal.storeID).images.icon;
-          storePic.alt = idToStoreName.get(dealObj.deal.storeID).name;
-          storePic.title = idToStoreName.get(dealObj.deal.storeID).name;
-          storePic.style.paddingRight="10px";
-          popupLinkBtn.prepend(storePic);
-          newPopup.append(popupLinkBtn);
-          popupLinkBtn.onclick = function(){
-            window.open("https://www.cheapshark.com/redirect?dealID=" + dealObj.deal.dealID);
-          };
-          document.addEventListener('mouseup', function(event){
-            var isClickInside = popupContainer.contains(event.target);
-            if (!isClickInside){
-              newPopup.style.backgroundColor = "green";
-              newPopup.style.display = "none";
-            }
-          });
-          popupContainer.append(newPopup);
-          mainpage.insertBefore(popupContainer, tableContainer);
+            var popupLinkBtn = document.createElement("button");
+            popupLinkBtn.id = "popup-button";
+            popupLinkBtn.innerHTML = "View Site for Deal Details";
+            var storePic = document.createElement("img");
+            storePic.src = "https://cheapshark.com" + idToStoreName.get(storeFilter).images.icon;
+            storePic.alt = idToStoreName.get(storeFilter).name;
+            storePic.title = idToStoreName.get(storeFilter).name;
+            storePic.style.paddingRight="10px";
+            popupLinkBtn.prepend(storePic);
+            newPopup.append(popupLinkBtn);
+            popupLinkBtn.onclick = function(){
+                window.open("https://www.cheapshark.com/redirect?dealID=" + dealObj.deal.dealID);
+            };    
+            document.addEventListener('mouseup', function(event){
+                var isClickInside = popupContainer.contains(event.target);
+                if (!isClickInside){
+                newPopup.style.backgroundColor = "green";
+                newPopup.style.display = "none";
+                }
+            });
+            popupContainer.append(newPopup);
+            mainpage.insertBefore(popupContainer, tableContainer);
         }, false);
 
         var name = document.createElement("td");
@@ -296,12 +333,12 @@ function addDeals(deals) {
         row.append(date);
 
         var store  = document.createElement("td");
-        store.style.textAlign = "center";
         var storePic = document.createElement("img");
-        storePic.src = "https://cheapshark.com" + idToStoreName.get(dealObj.deal.storeID).images.icon;
-        storePic.alt = idToStoreName.get(dealObj.deal.storeID).name;
-        storePic.title = idToStoreName.get(dealObj.deal.storeID).name;
-        store.append(storePic);
+        storePic.src = "https://cheapshark.com" + idToStoreName.get(storeFilter).images.icon;
+        storePic.alt = idToStoreName.get(storeFilter).name;
+        storePic.title = idToStoreName.get(storeFilter).name;
+        store.appendChild(storePic);
+        store.style.textAlign = "center";
         row.append(store);
 
         results.append(row);
