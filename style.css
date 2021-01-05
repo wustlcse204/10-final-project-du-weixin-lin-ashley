@@ -508,3 +508,7 @@ transform: translateY(-50%);
   background-color: #00909B;
   color: white;
 }
+
+li.title:hover > a.sidebar-color {
+  color: #00909B;
+}
