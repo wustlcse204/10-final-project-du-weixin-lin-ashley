@@ -123,6 +123,19 @@
   /*
   min-height: 500px; */
 }
+#store-deal-of-the-day{
+  background-color: #8AF6FF;
+  height: fit-content;
+  border-radius: 20px;
+  padding: 30px 30px 15px;
+  border: none;
+  box-shadow: 0px 0px 3px Gray;
+}
+#store-deal-heading{
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 40px;
+}
 #deal-of-the-day{
   background-color: #8AF6FF;
   height: 170px;
