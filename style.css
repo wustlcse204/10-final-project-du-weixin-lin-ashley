@@ -63,8 +63,8 @@
   background-color: #00909B;
   font-weight: 700;
   transition: .4s;
-
 }
+
 #title-logo{
   color: Silver;
   font-weight: 700;
@@ -191,9 +191,6 @@
   width: 170px;
   height: 40px;
   padding: 10px;
-}
-#advanced-sort-by:hover{
-  background-color: #8AF6FF;
 }
 #homepage-search{
   width: 90%;
@@ -387,9 +384,24 @@
   padding: 0px;
   width: 850px;
 }
-@media only screen and (min-width: 1130px) {
+@media only screen and (min-width: 1000px) {
   #deal-table {
     width: auto;
+  }
+  #deal-table th:nth-child(1){
+    width: 50%;
+  }
+  #deal-table th:nth-child(6){
+    width: 15%;
+  }
+  #deal-table th:nth-child(2), #deal-table th:nth-child(3),
+  #deal-table th:nth-child(4), #deal-table th:nth-child(5), #deal-table th:nth-child(7){
+    width: 9%;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  #deal-table {
+    width: 1000px;
   }
   #deal-table th:nth-child(1){
     width: 50%;
