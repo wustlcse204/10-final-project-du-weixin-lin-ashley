@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Get Game Deals</title>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Game Deals API (Du & Lin">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--CSS-->
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Other sources:
+    https://getbootstrap.com/docs/4.0/utilities/display/
+    -->
+</head>
+
+<body>
+  <!--Ashley's Search game part-->
+  <div id="main-container">
+    <div id="sidebar">
+      <ul id="sidebar-items-list" class="fa-ul">
+        <li><i class="fas fa-gamepad sidebar-item-icon"></i>Games</li>
+          <ul>
+            <li>All A-Z</li>
+            <li>Highest Rated</li>
+            <li>Newest Games</li>
+          </ul>
+        <li><i class="fas fa-tags sidebar-item-icon"></i>Deals</li>
+          <ul>
+            <li class="sort" id="Reviews">Most Popular</li>
+            <li class="sort" id="Savings">Best Deals</li>
+            <li class="sort" id="recent">Recent Deals</li>
+            <li class="sort" id="Price">Lowest to Highest</li>
+          </ul>
+        <li><i class="fas fa-warehouse sidebar-item-icon"></i>Stores</li>
+          <ul>
+            <li>Blizzard Shop</li>
+            <li>Epic Games Store</li>
+            <li>Fanatical</li>
+            <li>GOG</li>
+            <li>Humble Store</li>
+            <li>Origin</li>
+            <li>Steam</li>
+            <li>Uplay</li>
+          </ul>
+      </ul>
+    </div>
+    <div id="mainpage">
+      <div id="top-bar-with-search">
+        <p id="title-logo">GameDeals</p>
+        <button id="hamburger-icon" class="toggle" onclick="hamburgerMenu()"><i class="fas fa-bars"></i></button>
+
+        <!-- <div id="top-bar-search-bar">
+          <form id="game-form">
+            <input type="text" id="submission" class="search-input" placeholder="Search by Title" required>
+            <button id="search-btn" type="submit"><i id="search-bar-icon" class="fas fa-search"></i></button>
+          </form>
+        </div> -->
+      </div>
+      <div id="deal-of-the-day">
+        <p id="deal-heading">Most recent games from:</p>
+      </div>
+
+      <div id="page-results">
+        <button type="submit" class="page-results-buttons" id="prev-deal">Previous Page</button>
+        <div id="page-label"></div> <!--TEST DELETE WHEN DONE-->
+        <div id="results-label"></div>
+        <form id="skip">
+          Skip to page:
+          <input id="skip-input" type="number" min="1" required>
+          <button type="submit" class="page-results-buttons" >Go</button>
+        </form>
+        <button type="submit" class="page-results-buttons" id="next-deal">Next Page</button>
+      </div>
+
+      <!-- <div id="center-popup">
+        <div id="popup">
+          <div id="exitPopupContainer"><button id="exitPopup"><i class="fas fa-times"></i></button></div>
+          <div id="popup-thumbnail"></div>
+          <p id="popup-title">Game Title Title Title Title</p>
+          <p class="popup-details">Price: $20.19</p>
+          <p class= "popup-details">Savings: 80%</p>
+          <button id="popup-button">View Site for Deal Details</button>
+        </div>
+      </div> -->
+      <div class="table-responsive" id="table-container">
+        <table id="deal-table">
+          <!-- empty for now -->
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="script-stores.js"></script>
+  <!-- <script src="script-homepage.js"></script> -->
+  <script src="script-by-store.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
