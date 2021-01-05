@@ -40,9 +40,6 @@ function getAdvancedResults(deals) {
     }
     // no deals left - list done, publish results
     else {
-        console.log("Loop end");
-        console.log(listOfDeals);
-
         // show total # of results, publish table featuring results
         document.getElementById("results-label").innerHTML = "Found " + listOfDeals.length + " results";
         pageOne();
@@ -95,7 +92,6 @@ function getAdvancedDeals(page) {
     }
 
     var pageUrl = url + "&pageNumber=" + page;
-    console.log(pageUrl);
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

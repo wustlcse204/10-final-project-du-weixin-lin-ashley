@@ -409,6 +409,9 @@
 }
 #popupContainer{
   display: flex;
+  position: fixed;
+  top: 40%; 
+  right: 50%;
   justify-content: center;
 }
 #popup{

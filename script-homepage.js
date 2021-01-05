@@ -1,7 +1,6 @@
 // makes map of ids to store to call on later
 var idToStoreName = new Map();
 getStores(idToStoreName);
-console.log(idToStoreName); //TEST DELETE WHEN DONE
 
 function hamburgerMenu(){
   let navigationBar = document.getElementById("sidebar");
@@ -57,9 +56,6 @@ function getResults(deals) {
     }
     // no deals left - list done, publish results
     else {
-        console.log("Loop end");
-        console.log(listOfDeals);
-
         // show total # of results, publish table featuring results
         document.getElementById("results-label").innerHTML = "Found " + listOfDeals.length + " results";
         pageOne();
@@ -106,7 +102,6 @@ function pageOne() {
     event.preventDefault(); // Prevent page reload
     totalPageNumber = Math.ceil((listOfDeals.length)/6); // 20 deals per page? Math.ceil rounds up
 
-    alert("Showing page one"); //TEST DELETE WHEN DONE
     currentPage = 1;
     document.getElementById("page-label").innerHTML = "Page " + currentPage;
     document.getElementById("skip-input").max = totalPageNumber;
@@ -131,7 +126,6 @@ function pageOne() {
 }
 function prevDeal() {
     event.preventDefault(); // Prevent page reload
-    alert("Previous"); //TEST DELETE WHEN DONE
     currentPage -= 1;
     document.getElementById("page-label").innerHTML = "Page " + currentPage;
 
@@ -148,7 +142,6 @@ function prevDeal() {
 }
 function nextDeal() {
     event.preventDefault(); // Prevent page reload
-    alert("Next"); //TEST DELETE WHEN DONE
     currentPage += 1;
     document.getElementById("page-label").innerHTML = "Page " + currentPage;
 

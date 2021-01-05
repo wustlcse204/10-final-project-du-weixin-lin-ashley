@@ -26,7 +26,6 @@ function getStores(idToStoreName) {
     xhttp2.open("GET", url, true);
     xhttp2.send();
 }
-console.log(idToStoreName); //TEST DELETE WHEN DONE
 
 
 function hamburgerMenu(){
@@ -67,9 +66,6 @@ function getStoreResults(deals) {
 
     // stop at 1000 - last page = 1000/50 - 1
     if (pageVar == 1) {
-        console.log("Loop end");
-        console.log(listOfDeals);
-
         // show total # of results, publish table featuring results
         document.getElementById("results-label").innerHTML = "Found " + listOfDeals.length + " results";
         pageOne();  // in script-homepage.js
@@ -89,7 +85,6 @@ function getStoreDeals(page) {
     url += "&storeID="+storeFilter;
 
     var pageUrl = url + "&pageNumber=" + page;
-    console.log(pageUrl);
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -117,7 +112,6 @@ function pageOne() {
     event.preventDefault(); // Prevent page reload
     totalPageNumber = Math.ceil((listOfDeals.length)/20); // 20 deals per page? Math.ceil rounds up
 
-    alert("Showing page one"); //TEST DELETE WHEN DONE
     currentPage = 1;
     document.getElementById("page-label").innerHTML = "Page " + currentPage;
     document.getElementById("skip-input").max = totalPageNumber;
@@ -142,7 +136,6 @@ function pageOne() {
 }
 function prevDeal() {
     event.preventDefault(); // Prevent page reload
-    alert("Previous"); //TEST DELETE WHEN DONE
     currentPage -= 1;
     document.getElementById("page-label").innerHTML = "Page " + currentPage;
 
@@ -159,7 +152,6 @@ function prevDeal() {
 }
 function nextDeal() {
     event.preventDefault(); // Prevent page reload
-    alert("Next"); //TEST DELETE WHEN DONE
     currentPage += 1;
     document.getElementById("page-label").innerHTML = "Page " + currentPage;
 
