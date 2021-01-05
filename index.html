@@ -23,12 +23,14 @@
       <ul id="sidebar-items-list" class="fa-ul">
         <li><i class="fas fa-gamepad sidebar-item-icon"></i><a class="sidebar-color" href="advanced.html">Search</a></li>
         <li><i class="fas fa-tags sidebar-item-icon"></i>Deals</li>
+        <li>
           <ul>
             <li class="sort" id="Reviews">Most Popular</li>
             <li class="sort" id="Savings">Best Deals</li>
             <li class="sort" id="recent">Recent Deals</li>
             <li class="sort" id="Price">Lowest to Highest</li>
           </ul>
+        </li>
         <li><i class="fas fa-warehouse sidebar-item-icon"></i><a class="sidebar-color" href="stores.html">Stores</a></li>
       </ul>
     </div>
@@ -50,15 +52,15 @@
       <form id="homepage-search" class="row Reviews">
         <div class="form-group col-md-5">
           <label class="search-form-labels">Title/Keyword</label><br>
-          <input type="search" class="form-control" id="homepage-title" placeholder="Enter Your Description"></input>
+          <input type="search" class="form-control" id="homepage-title" placeholder="Enter Your Description">
         </div>
         <div class="form-group col-md-3">
           <label>Lowest Price</label><br>
-          <input type="number" class="form-control" id="homepage-low" placeholder="$0.00" min="0" max="50"></input>
+          <input type="number" class="form-control" id="homepage-low" placeholder="$0.00" min="0" max="50">
         </div>
         <div class="form-group col-md-3">
           <label>Highest Price</label><br>
-          <input type="number" class="form-control" id="homepage-high" placeholder="$300.00" min="0" max="50"></input>
+          <input type="number" class="form-control" id="homepage-high" placeholder="$300.00" min="0" max="50">
         </div>
         <div id="center-button" class="form-group col-md-1">
           <button class="homepage-search-btn"><i class="fas fa-search"></i></button>
